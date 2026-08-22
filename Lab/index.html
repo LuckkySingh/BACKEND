@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>HTML Tags Demonstration</title>
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            margin:0;
+            background:#f4f6f8;
+            color:#222;
+        }
+        header{
+            background:#1e3a5f;
+            color:white;
+            padding:30px;
+            text-align:center;
+        }
+        nav{
+            background:#152b45;
+            padding:15px;
+            text-align:center;
+        }
+        nav a{
+            color:white;
+            text-decoration:none;
+            margin:0 15px;
+        }
+        main{
+            max-width:1000px;
+            margin:30px auto;
+            padding:20px;
+        }
+        section{
+            background:white;
+            padding:25px;
+            margin-bottom:25px;
+            border-radius:10px;
+            box-shadow:0 3px 10px rgba(0,0,0,.08);
+        }
+        article{
+            background:#eef4fa;
+            padding:20px;
+            border-left:5px solid #1e3a5f;
+        }
+        figure{
+            text-align:center;
+            margin:20px 0;
+        }
+        figure img{
+            width:300px;
+            border-radius:10px;
+        }
+        table{
+            width:100%;
+            border-collapse:collapse;
+        }
+        th,td{
+            border:1px solid #ccc;
+            padding:12px;
+            text-align:left;
+        }
+        th{
+            background:#1e3a5f;
+            color:white;
+        }
+        form{
+            display:grid;
+            gap:15px;
+        }
+        input,select,textarea,button{
+            padding:10px;
+            font-size:16px;
+        }
+        button{
+            background:#1e3a5f;
+            color:white;
+            border:0;
+            cursor:pointer;
+        }
+        footer{
+            background:#152b45;
+            color:white;
+            text-align:center;
+            padding:20px;
+        }
+        mark{
+            background:#ffd54f;
+        }
+        code{
+            background:#eee;
+            padding:3px 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 1. header -->
+    <header>
+        <h1>HTML Tags Demonstration</h1>
+        <p>A webpage demonstrating around 30 commonly used HTML tags</p>
+    </header>
+
+    <!-- 2. nav -->
+    <nav>
+        <!-- 3. a -->
+        <a href="#text">Text</a>
+        <a href="#media">Media</a>
+        <a href="#table">Table</a>
+        <a href="#form">Form</a>
+    </nav>
+
+    <main>
+
+        <!-- 4. section -->
+        <section id="text">
+
+            <!-- 5. h2 -->
+            <h2>1. Text and Content Tags</h2>
+
+            <!-- 6. article -->
+            <article>
+
+                <!-- 7. h3 -->
+                <h3>HTML Tag Examples</h3>
+
+                <!-- 8. p -->
+                <p>
+                    This is a paragraph created using the
+                    <code>&lt;p&gt;</code> tag.
+                </p>
+
+                <!-- 9. strong -->
+                <p>
+                    This text contains <strong>strong importance</strong>
+                    using the <code>&lt;strong&gt;</code> tag.
+                </p>
+
+                <!-- 10. em -->
+                <p>
+                    This text contains <em>emphasized content</em>
+                    using the <code>&lt;em&gt;</code> tag.
+                </p>
+
+                <!-- 11. mark -->
+                <p>
+                    This is <mark>highlighted text</mark>
+                    using the <code>&lt;mark&gt;</code> tag.
+                </p>
+
+                <!-- 12. br -->
+                <p>
+                    First line<br>
+                    Second line using the <code>&lt;br&gt;</code> tag.
+                </p>
+
+                <!-- 13. hr -->
+                <hr>
+
+                <!-- 14. blockquote -->
+                <blockquote>
+                    "The journey of a thousand miles begins with a single step."
+                </blockquote>
+
+                <!-- 15. ul -->
+                <h3>Indian States</h3>
+
+                <ul>
+                    <!-- 16. li -->
+                    <li>Rajasthan</li>
+                    <li>Uttarakhand</li>
+                    <li>Maharashtra</li>
+                    <li>Kerala</li>
+                </ul>
+
+                <!-- 17. ol -->
+                <h3>Steps to Learn HTML</h3>
+
+                <ol>
+                    <li>Learn basic tags</li>
+                    <li>Learn CSS</li>
+                    <li>Learn JavaScript</li>
+                </ol>
+
+            </article>
+        </section>
+
+        <!-- 18. section -->
+        <section id="media">
+
+            <h2>2. Media Tags</h2>
+
+            <!-- 19. figure -->
+            <figure>
+
+                <!-- 20. img -->
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
+                    alt="Flag of India">
+
+                <!-- 21. figcaption -->
+                <figcaption>
+                    Indian Flag - Demonstration of the img and figcaption tags
+                </figcaption>
+
+            </figure>
+
+            <!-- 22. audio -->
+            <h3>Audio</h3>
+
+            <audio controls>
+                <source
+                    src="https://www.w3schools.com/html/horse.ogg"
+                    type="audio/ogg">
+                Your browser does not support audio.
+            </audio>
+
+            <!-- 23. video -->
+            <h3>Video</h3>
+
+            <video width="500" controls>
+                <source
+                    src="https://www.w3schools.com/html/mov_bbb.mp4"
+                    type="video/mp4">
+                Your browser does not support video.
+            </video>
+
+        </section>
+
+        <!-- 24. section -->
+        <section id="table">
+
+            <h2>3. Table Tags</h2>
+
+            <!-- 25. table -->
+            <table>
+
+                <!-- 26. caption -->
+                <caption>
+                    HTML Tag Categories
+                </caption>
+
+                <!-- 27. thead -->
+                <thead>
+
+                    <!-- 28. tr -->
+                    <tr>
+
+                        <!-- 29. th -->
+                        <th>Tag</th>
+                        <th>Purpose</th>
+                        <th>Example</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <!-- 30. td -->
+                        <td>&lt;p&gt;</td>
+                        <td>Creates a paragraph</td>
+                        <td>Text content</td>
+                    </tr>
+
+                    <tr>
+                        <td>&lt;h1&gt;</td>
+                        <td>Creates the main heading</td>
+                        <td>Main Title</td>
+                    </tr>
+
+                    <tr>
+                        <td>&lt;a&gt;</td>
+                        <td>Creates a hyperlink</td>
+                        <td>Visit Website</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+        <section id="form">
+
+            <h2>4. Form Tags</h2>
+
+            <!-- 31. form -->
+            <form>
+
+                <!-- 32. label -->
+                <label for="name">
+                    Name:
+                </label>
+
+                <!-- 33. input -->
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name">
+
+                <label for="state">
+                    State:
+                </label>
+
+                <!-- 34. select -->
+                <select id="state">
+
+                    <!-- 35. option -->
+                    <option>Rajasthan</option>
+                    <option>Uttarakhand</option>
+                    <option>Maharashtra</option>
+                    <option>Kerala</option>
+
+                </select>
+
+                <label for="message">
+                    Message:
+                </label>
+
+                <!-- 36. textarea -->
+                <textarea
+                    id="message"
+                    rows="5"
+                    placeholder="Write your message">
+                </textarea>
+
+                <!-- 37. button -->
+                <button type="submit">
+                    Submit
+                </button>
+
+            </form>
+
+        </section>
+
+        <section>
+
+            <h2>5. Other Useful Tags</h2>
+
+            <!-- 38. details -->
+            <details>
+
+                <!-- 39. summary -->
+                <summary>
+                    Click to see more HTML information
+                </summary>
+
+                <p>
+                    HTML stands for HyperText Markup Language.
+                    It is used to create the structure of webpages.
+                </p>
+
+            </details>
+
+            <!-- 40. progress -->
+            <h3>HTML Learning Progress</h3>
+
+            <progress value="70" max="100">
+                70%
+            </progress>
+
+        </section>
+
+    </main>
+
+    <!-- 41. footer -->
+    <footer>
+
+        <p>
+            HTML Tags Demonstration Webpage
+        </p>
+
+        <small>
+            Created for educational purposes
+        </small>
+
+    </footer>
+
+</body>
+</html>
