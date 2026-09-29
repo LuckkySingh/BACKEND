@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= edit ? "Edit Post" : "Create New Post" %> - Simple CMS</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main class="container form-page">
+        <section class="form-card">
+            <a href="/posts" class="back-link">← Back to Posts</a>
+
+            <p class="eyebrow">Simple CMS</p>
+            <h1><%= edit ? "Edit Post" : "Create a Post" %></h1>
+            <p class="subtitle"><%= edit ? "Update the details of this post." : "Add a title, content and author for your post." %></p>
+
+            <% if(error){ %>
+                <div class="error-box"><%= error %></div>
+            <% } %>
+
+            <form action="<%= edit ? '/posts/'+postId+'/edit' : '/posts' %>" method="POST">
+                <div class="field">
+                    <label for="title">Title</label>
+                    <input id="title" name="title" type="text" value="<%= title %>" placeholder="Enter post title" required>
+                </div>
+
+                <div class="field">
+                    <label for="content">Content</label>
+                    <textarea id="content" name="content" rows="10" placeholder="Write your post content" required><%= content %></textarea>
+                </div>
+
+                <div class="field">
+                    <label for="author">Author</label>
+                    <input id="author" name="author" type="text" value="<%= author %>" placeholder="Enter author name" required>
+                </div>
+
+                <p class="date-note"><%= edit ? "Original creation time is preserved. An update time is recorded automatically." : "Creation date and time will be generated automatically by the server." %></p>
+
+                <button type="submit" class="button submit-button"><%= edit ? "Save Changes" : "Submit Post" %></button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

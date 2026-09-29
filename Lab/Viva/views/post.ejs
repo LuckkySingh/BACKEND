@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= post.title %> - Simple CMS</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main class="container">
+        <article class="single-post">
+            <a href="/posts" class="back-link">← Back to Posts</a>
+
+            <p class="eyebrow">Published Post</p>
+            <h1><%= post.title %></h1>
+
+            <div class="post-meta large">
+                <span>By <%= post.author %></span>
+                <span>Created: <%= formatDateTime(post.createdAt) %></span>
+                <% if(post.updatedAt){ %>
+                    <span>Updated: <%= formatDateTime(post.updatedAt) %></span>
+                <% } %>
+            </div>
+
+            <div class="post-content"><%= post.content %></div>
+
+            <div class="detail-actions">
+                <a href="/posts/<%= post._id %>/edit" class="button">Edit Post</a>
+                <form action="/posts/<%= post._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to permanently delete this post?');">
+                    <button type="submit" class="button danger">Delete Post</button>
+                </form>
+            </div>
+        </article>
+    </main>
+</body>
+</html>

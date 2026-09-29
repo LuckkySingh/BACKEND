@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts - Simple CMS</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <main class="container">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">Simple CMS</p>
+                <h1>All Posts</h1>
+                <p class="subtitle"><%= posts.length %> post<%= posts.length===1?"":"s" %> available</p>
+            </div>
+            <a href="/posts/new" class="button">Create New Post</a>
+        </header>
+
+        <form class="search-bar" action="/posts" method="GET">
+            <input type="search" name="search" value="<%= search %>" placeholder="Search by title, author or content">
+            <button type="submit" class="button">Search</button>
+            <% if(search){ %>
+                <a href="/posts" class="clear-button">Clear</a>
+            <% } %>
+        </form>
+
+        <% if(posts.length===0){ %>
+            <section class="empty-card">
+                <h2><%= search ? "No matching posts" : "No posts yet" %></h2>
+                <p><%= search ? "Try a different search term." : "Create your first post to see it here." %></p>
+                <% if(search){ %>
+                    <a href="/posts" class="button">Show All Posts</a>
+                <% }else{ %>
+                    <a href="/posts/new" class="button">Create Post</a>
+                <% } %>
+            </section>
+        <% }else{ %>
+            <section class="post-list">
+                <% posts.forEach(post=>{ %>
+                    <article class="post-card">
+                        <h2>
+                            <a href="/posts/<%= post._id %>"><%= post.title %></a>
+                        </h2>
+
+                        <div class="post-meta">
+                            <span>By <%= post.author %></span>
+                            <span><%= formatDateTime(post.createdAt) %></span>
+                        </div>
+
+                        <div class="card-actions">
+                            <a href="/posts/<%= post._id %>" class="small-button">View</a>
+                            <a href="/posts/<%= post._id %>/edit" class="small-button edit">Edit</a>
+                            <form action="/posts/<%= post._id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                <button type="submit" class="small-button delete">Delete</button>
+                            </form>
+                        </div>
+                    </article>
+                <% }) %>
+            </section>
+        <% } %>
+    </main>
+</body>
+</html>
