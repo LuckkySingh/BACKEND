@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Node Express Experiment</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Node.js and Express.js Experiment</h1>
+
+    <p class="subtitle">
+        Server-Side JavaScript, REST API, URL Parameters, POST Data and EJS
+    </p>
+
+    <section>
+        <h2>Registered Users</h2>
+
+        <div class="users">
+            <% users.forEach(user=>{ %>
+                <div class="card">
+                    <h3><%= user.name %></h3>
+                    <p>ID: <%= user.id %></p>
+                    <p><%= user.email %></p>
+                    <a href="/user/<%= user.id %>">View User</a>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <section>
+        <h2>Add New User</h2>
+
+        <form action="/submit" method="POST">
+
+            <label>Name</label>
+            <input type="text" name="name" required>
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <button type="submit">Submit</button>
+
+        </form>
+    </section>
+
+    <section>
+        <h2>REST API</h2>
+
+        <p>All Users:</p>
+
+        <a href="/api/users" target="_blank">
+            /api/users
+        </a>
+
+        <p>Individual User:</p>
+
+        <a href="/api/users/1" target="_blank">
+            /api/users/1
+        </a>
+    </section>
+
+</div>
+
+</body>
+</html>
