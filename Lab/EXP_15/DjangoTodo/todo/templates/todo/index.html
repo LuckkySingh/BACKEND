@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        *{box-sizing:border-box}
+        :root{color-scheme:dark}
+        body{margin:0;min-height:100vh;background:#0b1120;color:#e2e8f0;font-family:Arial,sans-serif}
+        .app{max-width:1100px;margin:auto;padding:35px 22px}
+        .topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:30px}
+        .brand{font-size:27px;font-weight:750;letter-spacing:-1px}
+        .brand span{color:#60a5fa}
+        .primary,.secondary,.danger,.complete{display:inline-block;border:0;border-radius:9px;padding:11px 14px;text-decoration:none;font-size:13px;font-weight:650;cursor:pointer}
+        .primary{background:#3b82f6;color:white}
+        .secondary{background:#263449;color:#dbeafe}
+        .danger{background:#451c29;color:#fca5a5}
+        .complete{background:#123b32;color:#86efac}
+        .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:28px}
+        .stat{padding:21px;background:#131e30;border:1px solid #263449;border-radius:14px}
+        .stat-label{font-size:13px;color:#94a3b8}
+        .stat-value{margin-top:12px;font-size:29px;font-weight:750}
+        .workspace{padding:24px;background:#131e30;border:1px solid #263449;border-radius:16px}
+        .workspace-head{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:22px}
+        h1{font-size:23px;margin:0}
+        .muted{color:#94a3b8;font-size:13px}
+        .search-form{display:flex;gap:10px;margin-bottom:22px}
+        .search-input{flex:1;min-width:0;padding:13px 15px;background:#0b1120;border:1px solid #34445d;border-radius:9px;color:white;font-size:14px}
+        .search-input:focus{outline:none;border-color:#60a5fa}
+        .filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:24px}
+        .filter{padding:9px 13px;background:#1b293e;border-radius:8px;text-decoration:none;color:#94a3b8;font-size:13px}
+        .filter.active{background:#233e64;color:#93c5fd}
+        .task-list{display:grid;gap:12px}
+        .task{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:18px;background:#18253a;border:1px solid #293950;border-radius:12px;transition:border-color .2s,transform .2s}
+        .task:hover{border-color:#4b6486;transform:translateY(-1px)}
+        .task-main{min-width:0;flex:1}
+        .task-title{font-size:15px;font-weight:650;overflow-wrap:anywhere}
+        .task-title.done{color:#64748b;text-decoration:line-through}
+        .task-meta{display:flex;flex-wrap:wrap;gap:13px;margin-top:10px;color:#94a3b8;font-size:12px}
+        .badge{padding:5px 8px;border-radius:6px;background:#24344c;color:#cbd5e1;font-size:11px;white-space:nowrap}
+        .badge.overdue{background:#451c29;color:#fca5a5}
+        .badge.completed{background:#123b32;color:#86efac}
+        .task-actions{display:flex;align-items:center;flex-wrap:wrap;gap:7px}
+        .task-actions form{margin:0}
+        .empty{text-align:center;padding:45px 15px;color:#94a3b8;border:1px dashed #34445d;border-radius:12px}
+        .empty h3{color:#e2e8f0}
+        @media(max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.task{align-items:flex-start;flex-direction:column}.task-actions{width:100%}.workspace{padding:17px}.topbar{align-items:flex-start}}
+        @media(max-width:420px){.app{padding:22px 12px}.brand{font-size:22px}.search-form{flex-wrap:wrap}.search-input{flex-basis:100%}.stat{padding:15px}.stat-value{font-size:24px}}
+    </style>
+</head>
+<body>
+    <main class="app">
+        <header class="topbar">
+            <div class="brand">TODO<span>TASKS</span></div>
+            <a class="primary" href="{% url 'add_task' %}">+ Add Task</a>
+        </header>
+
+        <section class="stats">
+            <article class="stat">
+                <div class="stat-label">Total Tasks</div>
+                <div class="stat-value">{{ total_count }}</div>
+            </article>
+            <article class="stat">
+                <div class="stat-label">Pending</div>
+                <div class="stat-value">{{ pending_count }}</div>
+            </article>
+            <article class="stat">
+                <div class="stat-label">Completed</div>
+                <div class="stat-value">{{ completed_count }}</div>
+            </article>
+            <article class="stat">
+                <div class="stat-label">Overdue</div>
+                <div class="stat-value">{{ overdue_count }}</div>
+            </article>
+        </section>
+
+        <section class="workspace">
+            <div class="workspace-head">
+                <div>
+                    <h1>My Tasks</h1>
+                    <p class="muted">Manage your schedule and stay organized.</p>
+                </div>
+            </div>
+
+            <form class="search-form" method="GET" action="{% url 'index' %}">
+                <input class="search-input" type="search" name="q" value="{{ query }}" placeholder="Search tasks by title...">
+                {% if status != 'all' %}
+                    <input type="hidden" name="status" value="{{ status }}">
+                {% endif %}
+                <button class="primary" type="submit">Search</button>
+                {% if query %}
+                    <a class="secondary" href="{% url 'index' %}{% if status != 'all' %}?status={{ status }}{% endif %}">Clear</a>
+                {% endif %}
+            </form>
+
+            <nav class="filters">
+                <a class="filter {% if status == 'all' %}active{% endif %}" href="{% url 'index' %}?status=all">All Tasks</a>
+                <a class="filter {% if status == 'pending' %}active{% endif %}" href="{% url 'index' %}?status=pending">Pending</a>
+                <a class="filter {% if status == 'completed' %}active{% endif %}" href="{% url 'index' %}?status=completed">Completed</a>
+                <a class="filter {% if status == 'overdue' %}active{% endif %}" href="{% url 'index' %}?status=overdue">Overdue</a>
+            </nav>
+
+            <div class="task-list">
+                {% for task in tasks %}
+                    <article class="task">
+                        <div class="task-main">
+                            <div class="task-title {% if task.completed %}done{% endif %}">{{ task.title }}</div>
+
+                            <div class="task-meta">
+                                <span>Created: {{ task.created_at|date:"d M Y, h:i A" }}</span>
+                                {% if task.due_at %}
+                                    <span>Due: {{ task.due_at|date:"d M Y, h:i A" }}</span>
+                                {% else %}
+                                    <span>No deadline</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="task-actions">
+                            {% if task.completed %}
+                                <span class="badge completed">Completed</span>
+                            {% elif task.due_at and task.due_at < now %}
+                                <span class="badge overdue">Overdue</span>
+                            {% else %}
+                                <span class="badge">Pending</span>
+                            {% endif %}
+
+                            <a class="secondary" href="{% url 'edit_task' task.id %}">Edit</a>
+
+                            <form method="POST" action="{% url 'toggle_task' task.id %}">
+                                {% csrf_token %}
+                                <button class="complete" type="submit">{% if task.completed %}Undo{% else %}Complete{% endif %}</button>
+                            </form>
+
+                            <form method="POST" action="{% url 'delete_task' task.id %}" onsubmit="return confirm('Are you sure you want to delete this task?')">
+                                {% csrf_token %}
+                                <button class="danger" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </article>
+                {% empty %}
+                    <div class="empty">
+                        <h3>No tasks found</h3>
+                        <p>Try another search or create a new task.</p>
+                        <a class="primary" href="{% url 'add_task' %}">Create Task</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>
