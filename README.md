@@ -1,3 +1,5 @@
+<div align="center">
+
 # 🖥️ BACKEND DEVELOPMENT
 
 ### Course Repository: Assignments, Lab Experiments, Viva & Theory
@@ -7,7 +9,7 @@
 ![Experiments](https://img.shields.io/badge/Lab%20Experiments-15-2c1a3d?style=for-the-badge)
 [![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/LuckkySingh/BACKEND)
 
----
+</div>
 ---
 
 ## 👤 Student Details
