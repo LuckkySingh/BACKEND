@@ -1,15 +1,13 @@
-<div align="center">
+# 🖥️ BACKEND
 
-<h1>🖥️ BACKEND</h1>
+### Course Repository: Assignments, Lab Experiments, Viva & Theory
 
-<h3>Course Repository: Assignments, Lab Experiments, Viva &amp; Theory</h3>
+![SAP ID](https://img.shields.io/badge/SAP%20ID-59001802-5b2a86?style=for-the-badge)
+![Subject](https://img.shields.io/badge/Subject-Backend-8e44ad?style=for-the-badge)
+![Experiments](https://img.shields.io/badge/Lab%20Experiments-15-2c1a3d?style=for-the-badge)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/LuckkySingh/BACKEND)
 
-<img src="https://img.shields.io/badge/SAP%20ID-59001802-5b2a86?style=for-the-badge" alt="SAP ID">
-<img src="https://img.shields.io/badge/Subject-Backend-8e44ad?style=for-the-badge" alt="Subject">
-<img src="https://img.shields.io/badge/Lab%20Experiments-15-2c1a3d?style=for-the-badge" alt="Experiments">
-<a href="https://github.com/LuckkySingh/BACKEND"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github" alt="GitHub Repo"></a>
-
-</div>
+---
 ---
 
 ## 👤 Student Details
