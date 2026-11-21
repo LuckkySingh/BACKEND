@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Experiment 8 - DOM and Event Handling</title>
+<style>
+body{font-family:Arial;margin:20px;background:#f4f1fa}
+.box{background:#fff;border:2px solid #8e44ad;border-radius:8px;padding:15px;margin:12px 0}
+button{background:#8e44ad;color:#fff;border:none;padding:8px 14px;border-radius:5px;cursor:pointer;margin:3px}
+#hoverBox{width:200px;height:80px;background:#d2b4de;text-align:center;line-height:80px}
+.done{text-decoration:line-through;color:gray}
+li{cursor:pointer;margin:4px 0}
+</style></head>
+<body>
+<h2>DOM and Event Handling</h2>
+
+<div class="box"><h3>1. Selecting and changing elements</h3>
+  <p id="para">Original paragraph text.</p>
+  <button id="changeText">Change Text</button>
+  <button id="changeStyle">Change Style</button>
+  <button id="toggleBtn">Toggle Hide/Show</button>
+</div>
+
+<div class="box"><h3>2. Create / remove elements (To-do list)</h3>
+  <input type="text" id="task" placeholder="Enter task">
+  <button id="addBtn">Add</button>
+  <ul id="list"></ul>
+</div>
+
+<div class="box"><h3>3. Mouse events</h3>
+  <div id="hoverBox">Hover / Click me</div>
+  <p id="mouseMsg"></p>
+</div>
+
+<div class="box"><h3>4. Keyboard events</h3>
+  <input type="text" id="keyInput" placeholder="Type something">
+  <p id="keyMsg"></p>
+</div>
+
+<div class="box"><h3>5. Form events and event bubbling</h3>
+  <select id="sel"><option>HTML</option><option>CSS</option><option>JS</option></select>
+  <span id="selMsg"></span>
+  <div id="parent" style="background:#e8daef;padding:15px;margin-top:10px">Parent
+    <button id="child">Child button</button>
+  </div>
+  <p id="bubbleMsg"></p>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+// 1. DOM manipulation
+$("changeText").addEventListener("click", () => $("para").textContent = "Text changed using DOM!");
+$("changeStyle").onclick = () => { $("para").style.color = "crimson"; $("para").style.fontSize = "24px"; };
+$("toggleBtn").addEventListener("click", () => { const p=$("para"); p.style.display = p.style.display==="none" ? "block" : "none"; });
+
+// 2. createElement / appendChild / remove
+$("addBtn").addEventListener("click", () => {
+  const t = $("task").value.trim(); if(!t) return;
+  const li = document.createElement("li");
+  li.textContent = t;
+  li.addEventListener("click", () => li.classList.toggle("done"));
+  li.addEventListener("dblclick", () => li.remove());
+  $("list").appendChild(li); $("task").value = "";
+});
+
+// 3. Mouse events
+const hb = $("hoverBox");
+hb.addEventListener("mouseover", () => { hb.style.background="#8e44ad"; hb.style.color="#fff"; });
+hb.addEventListener("mouseout",  () => { hb.style.background="#d2b4de"; hb.style.color="#000"; });
+hb.addEventListener("click", e => $("mouseMsg").textContent = `Clicked at X:${e.clientX}, Y:${e.clientY}`);
+hb.addEventListener("dblclick", () => $("mouseMsg").textContent = "Double clicked!");
+
+// 4. Keyboard events
+$("keyInput").addEventListener("keyup", e => $("keyMsg").textContent = `Key: ${e.key} | Text length: ${e.target.value.length}`);
+
+// 5. Change event and bubbling
+$("sel").addEventListener("change", e => $("selMsg").textContent = " Selected: " + e.target.value);
+$("parent").addEventListener("click", () => $("bubbleMsg").textContent += "Parent clicked. ");
+$("child").addEventListener("click", () => $("bubbleMsg").textContent = "Child clicked -> ");
+</script>
+</body>
+</html>
