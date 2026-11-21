@@ -19,7 +19,7 @@
 #### EXP 11 [Report](./Lab/EXP_11/README.md)
 #### EXP 12 [Report](./Lab/EXP_12/README.md)
 #### EXP 12 B [Report](./Lab/EXP_12_B/exp_1/Report.md)
-#### EXP 13 [Report](./Lab/EXP_13/Report.md)
+#### EXP 13 [Report](./Lab/EXP_13/README.md)
 #### EXP 15 [Report](./Lab/EXP_15/DjangoTodo/Report.md)
 
 ### Viva
