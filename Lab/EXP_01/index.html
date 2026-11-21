@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>My HTML Tags Page</title>
+
+<style>
+body{
+    font-family:Arial;
+    margin:0;
+    background:#f2f2f2;
+    color:#222;
+}
+
+header{
+    background:#234;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+nav{
+    background:#111;
+    text-align:center;
+    padding:12px;
+}
+
+nav a{
+    color:white;
+    margin:10px;
+    text-decoration:none;
+}
+
+main{
+    width:90%;
+    max-width:900px;
+    margin:20px auto;
+}
+
+section{
+    background:white;
+    padding:20px;
+    margin:20px 0;
+    border-radius:8px;
+}
+
+article{
+    background:#eef3f7;
+    padding:15px;
+}
+
+img{
+    width:250px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #aaa;
+    padding:10px;
+}
+
+th{
+    background:#234;
+    color:white;
+}
+
+input,select,textarea,button{
+    width:100%;
+    padding:10px;
+    margin:7px 0;
+    box-sizing:border-box;
+}
+
+button{
+    background:#234;
+    color:white;
+    border:0;
+}
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:15px;
+}
+
+mark{
+    background:yellow;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>HTML Tags</h1>
+<p>Some common HTML tags with simple examples</p>
+</header>
+
+<nav>
+<a href="#text">Text</a>
+<a href="#media">Media</a>
+<a href="#table">Table</a>
+<a href="#form">Form</a>
+</nav>
+
+<main>
+
+<section id="text">
+
+<h2>Text Tags</h2>
+
+<article>
+
+<h3>Basic HTML Example</h3>
+
+<p>This is a simple paragraph using the p tag.</p>
+
+<p><strong>This text is important.</strong></p>
+
+<p><em>This text is written in emphasis.</em></p>
+
+<p>This is <mark>highlighted text</mark>.</p>
+
+<p>
+This is the first line.<br>
+This is the second line.
+</p>
+
+<hr>
+
+<blockquote>
+Learning HTML is the first step towards web development.
+</blockquote>
+
+<h3>Some States of India</h3>
+
+<ul>
+<li>Rajasthan</li>
+<li>Uttarakhand</li>
+<li>Kerala</li>
+<li>Punjab</li>
+</ul>
+
+<h3>How to Learn HTML</h3>
+
+<ol>
+<li>Learn HTML tags</li>
+<li>Practice CSS</li>
+<li>Learn JavaScript</li>
+</ol>
+
+<p>The <code>&lt;p&gt;</code> tag is used for paragraphs.</p>
+
+</article>
+
+</section>
+
+<section id="media">
+
+<h2>Media Tags</h2>
+
+<figure>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg" alt="Indian Flag">
+
+<figcaption>Flag of India</figcaption>
+
+</figure>
+
+<h3>Audio</h3>
+
+<audio controls>
+<source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+Your browser does not support audio.
+</audio>
+
+<h3>Video</h3>
+
+<video width="400" controls>
+<source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+Your browser does not support video.
+</video>
+
+</section>
+
+<section id="table">
+
+<h2>Student Table</h2>
+
+<table>
+
+<caption>Student Information</caption>
+
+<thead>
+<tr>
+<th>Name</th>
+<th>Course</th>
+<th>City</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Rahul</td>
+<td>B.Tech</td>
+<td>Jaipur</td>
+</tr>
+
+<tr>
+<td>Aman</td>
+<td>BCA</td>
+<td>Delhi</td>
+</tr>
+
+<tr>
+<td>Riya</td>
+<td>B.Tech</td>
+<td>Dehradun</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</section>
+
+<section id="form">
+
+<h2>Simple Form</h2>
+
+<form>
+
+<label for="name">Name</label>
+
+<input type="text" id="name" placeholder="Enter your name">
+
+<label for="email">Email</label>
+
+<input type="email" id="email" placeholder="Enter your email">
+
+<label for="city">City</label>
+
+<select id="city">
+<option>Jaipur</option>
+<option>Delhi</option>
+<option>Dehradun</option>
+<option>Mumbai</option>
+</select>
+
+<label for="message">Message</label>
+
+<textarea id="message" rows="4" placeholder="Write something"></textarea>
+
+<button type="submit">Submit</button>
+
+</form>
+
+</section>
+
+<section>
+
+<h2>More HTML Tags</h2>
+
+<details>
+
+<summary>What is HTML?</summary>
+
+<p>
+HTML stands for HyperText Markup Language.
+It is used to create the basic structure of a webpage.
+</p>
+
+</details>
+
+<h3>Learning Progress</h3>
+
+<progress value="70" max="100">70%</progress>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>My HTML Tags Webpage</p>
+<small>Made for learning HTML</small>
+
+</footer>
+
+</body>
+</html>

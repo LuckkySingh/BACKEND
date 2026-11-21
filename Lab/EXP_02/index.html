@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Experiment 2 - All types of CSS</title>
+<link rel="stylesheet" href="style.css"> <!-- External -->
+<style>
+/* Internal CSS */
+.internal { background:#e8daef; padding:10px; border-left:6px solid #5b2a86; }
+table { border-collapse:collapse; width:100%; }
+th, td { border:1px solid #8e44ad; padding:8px; text-align:center; }
+tr:nth-child(even) { background:#f5eef8; }
+</style>
+</head>
+<body>
+<h1>All Types of Cascading Style Sheets</h1>
+
+<div class="card">
+  <h2 style="color:blue; text-decoration:underline;">1. Inline CSS</h2>
+  <p style="background:yellow; padding:8px;">This paragraph is styled using the style attribute.</p>
+</div>
+
+<div class="card">
+  <h2>2. Internal CSS</h2>
+  <p class="internal">This paragraph is styled using the &lt;style&gt; tag in the head.</p>
+</div>
+
+<div class="card">
+  <h2>3. External CSS</h2>
+  <p>This page is linked with style.css. Notice the drop-cap on the first letter.</p>
+</div>
+
+<div class="card">
+  <h2>4. Selectors</h2>
+  <p id="unique">ID selector paragraph</p>
+  <ul><li>First item (first-child)</li><li>Second item</li><li>Third item</li></ul>
+  <a href="#">Hover over this link</a><br><br>
+  <input type="text" placeholder="Attribute selector">
+</div>
+
+<div class="card">
+  <h2>5. Table styling</h2>
+  <table>
+    <tr><th>Name</th><th>Course</th></tr>
+    <tr><td>Asha</td><td>HTML</td></tr>
+    <tr><td>Ravi</td><td>CSS</td></tr>
+    <tr><td>Meera</td><td>JavaScript</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>6. Transition / Hover</h2>
+  <button class="btn">Hover me</button>
+</div>
+</body>
+</html>
