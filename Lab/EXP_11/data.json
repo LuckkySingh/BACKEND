@@ -1,0 +1,6 @@
+[
+  { "title": "HTML Basics",  "desc": "Learn tags, forms, tables and media.", "level": "Beginner" },
+  { "title": "CSS Styling",  "desc": "Selectors, flexbox, grid and responsive design.", "level": "Beginner" },
+  { "title": "JavaScript",   "desc": "DOM, events, ES6 and form validation.", "level": "Intermediate" },
+  { "title": "AJAX and JSON","desc": "Load data without reloading the page.", "level": "Intermediate" }
+]

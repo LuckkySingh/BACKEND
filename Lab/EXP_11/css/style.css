@@ -1,0 +1,20 @@
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f4f1fa;color:#2c1a3d}
+header{background:#5b2a86;color:#fff;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
+header nav a{color:#fff;margin-left:15px;text-decoration:none}
+header nav a:hover{text-decoration:underline}
+.hero{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#8e44ad,#5b2a86);color:#fff}
+.hero button{margin-top:15px;padding:10px 22px;border:none;border-radius:5px;background:#fff;color:#5b2a86;cursor:pointer;font-size:16px}
+section{padding:30px 20px;max-width:1000px;margin:auto}
+h2{margin-bottom:15px}
+#courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.card{background:#fff;border-radius:8px;padding:18px;box-shadow:0 2px 8px #ccc}
+.badge{display:inline-block;background:#e8daef;padding:2px 10px;border-radius:12px;font-size:12px;margin-top:8px}
+form{background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px #ccc}
+form label{display:block;margin-top:10px;font-weight:bold}
+form input,form textarea{width:100%;padding:8px;margin-top:4px}
+form button{margin-top:15px;padding:10px 20px;background:#8e44ad;color:#fff;border:none;border-radius:5px;cursor:pointer}
+.error{color:crimson;font-size:13px}
+#formMsg{margin-top:10px;font-weight:bold;color:green}
+footer{background:#2c1a3d;color:#fff;text-align:center;padding:15px;margin-top:20px}
+@media (max-width:600px){header{flex-direction:column}header nav a{margin:0 8px}}
