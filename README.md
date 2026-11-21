@@ -1,4 +1,4 @@
-# 🖥️ BACKEND
+# 🖥️ BACKEND DEVELOPMENT
 
 ### Course Repository: Assignments, Lab Experiments, Viva & Theory
 
