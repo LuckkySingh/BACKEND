@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Experiment 5 - JS Arrays, Objects, Functions</title>
+<style>body{font-family:Arial;margin:20px;background:#f4f1fa}pre{background:#2c1a3d;color:#eee;padding:15px;border-radius:8px;white-space:pre-wrap}</style>
+</head>
+<body>
+<h2>JavaScript Array, Object and Functions</h2>
+<button onclick="runAll()">Run Programs</button>
+<pre id="out">Click the button to see output...</pre>
+<script>
+let log = "";
+function print(t){ log += t + "\n"; }
+
+// ---------- ARRAYS ----------
+function arrayDemo(){
+  print("=== ARRAYS ===");
+  let nums = [5, 3, 8, 1, 9];
+  nums.push(7); print("push(7): " + nums);
+  nums.pop(); print("pop(): " + nums);
+  nums.unshift(0); print("unshift(0): " + nums);
+  nums.shift(); print("shift(): " + nums);
+  print("sorted: " + [...nums].sort((a,b)=>a-b));
+  print("reversed: " + [...nums].reverse());
+  print("slice(1,3): " + nums.slice(1,3));
+  print("indexOf(8): " + nums.indexOf(8));
+  print("doubled (map): " + nums.map(n=>n*2));
+  print("even (filter): " + nums.filter(n=>n%2===0));
+  print("sum (reduce): " + nums.reduce((a,b)=>a+b,0));
+}
+
+// ---------- OBJECTS ----------
+function objectDemo(){
+  print("\n=== OBJECTS ===");
+  let student = {
+    name: "Asha", age: 20, marks: [80, 90, 85],
+    address: { city: "Najibabad", state: "UP" },
+    average(){ return this.marks.reduce((a,b)=>a+b)/this.marks.length; }
+  };
+  print("Name: " + student.name + ", City: " + student.address.city);
+  student.course = "BCA";
+  print("Added course: " + student["course"]);
+  print("Average: " + student.average().toFixed(2));
+  for (let key in student){ if (typeof student[key] !== "function") print(key + " -> " + JSON.stringify(student[key])); }
+  delete student.age;
+  print("Keys after delete: " + Object.keys(student));
+}
+
+// ---------- FUNCTIONS ----------
+function add(a, b = 10){ return a + b; }                 // declaration + default parameter
+const multiply = function(a, b){ return a * b; };        // expression
+const square = n => n * n;                               // arrow
+function factorial(n){ return n <= 1 ? 1 : n * factorial(n-1); } // recursion
+function counter(){ let c = 0; return () => ++c; }       // closure
+function functionDemo(){
+  print("\n=== FUNCTIONS ===");
+  print("add(5) = " + add(5));
+  print("multiply(4,5) = " + multiply(4,5));
+  print("square(6) = " + square(6));
+  print("factorial(5) = " + factorial(5));
+  const c = counter(); c(); c();
+  print("closure counter after 3 calls = " + c());
+  (function(){ print("IIFE executed immediately"); })();
+}
+
+function runAll(){
+  log = ""; arrayDemo(); objectDemo(); functionDemo();
+  document.getElementById("out").textContent = log;
+}
+</script>
+</body>
+</html>
