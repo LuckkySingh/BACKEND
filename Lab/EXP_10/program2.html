@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Experiment 10 - jQuery Program 2</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+body{font-family:Arial;margin:20px;background:#f4f1fa}
+.box{background:#fff;border:2px solid #8e44ad;padding:15px;margin:10px 0;border-radius:8px}
+button{background:#8e44ad;color:#fff;border:none;padding:8px 14px;border-radius:5px;cursor:pointer;margin:3px}
+.err{color:crimson}
+li{margin:4px 0;cursor:pointer}
+table{border-collapse:collapse}th,td{border:1px solid #8e44ad;padding:6px 10px}
+</style></head>
+<body>
+<h2>jQuery Program 2: DOM, Events, Form and AJAX</h2>
+
+<div class="box">
+  <h3>Add / Remove list items</h3>
+  <input type="text" id="item" placeholder="New item"> <button id="add">Add</button>
+  <ul id="list"><li>Apple</li><li>Banana</li></ul>
+  <p>Click an item to remove it.</p>
+</div>
+
+<div class="box">
+  <h3>Form validation and get/set values</h3>
+  <input type="text" id="uname" placeholder="Username"> <span id="msg" class="err"></span><br><br>
+  <button id="check">Validate</button>
+  <button id="getHtml">Show text of heading</button>
+  <p id="info"></p>
+</div>
+
+<div class="box">
+  <h3>Live search filter</h3>
+  <input type="text" id="search" placeholder="Search names...">
+  <table id="tbl"><tr><th>Name</th></tr><tr><td>Asha</td></tr><tr><td>Ravi</td></tr><tr><td>Meera</td></tr><tr><td>Rahul</td></tr></table>
+</div>
+
+<div class="box">
+  <h3>AJAX with jQuery</h3>
+  <button id="load">Load JSON (use local server)</button>
+  <button id="loadPublic">Load public API</button>
+  <div id="ajaxOut"></div>
+</div>
+
+<script>
+$(function(){
+  // add (append) and remove using event delegation
+  $("#add").click(function(){
+    const v = $("#item").val().trim();
+    if(v){ $("#list").append("<li>" + $("<div>").text(v).html() + "</li>"); $("#item").val(""); }
+  });
+  $("#list").on("click", "li", function(){ $(this).fadeOut(300, function(){ $(this).remove(); }); });
+
+  // validation + val()/text()
+  $("#check").click(function(){
+    const u = $("#uname").val();
+    $("#msg").text(u.length < 4 ? "Min 4 characters" : "").css("color", u.length < 4 ? "crimson" : "green");
+    if (u.length >= 4) $("#msg").text("Valid!");
+  });
+  $("#getHtml").click(() => $("#info").text("Heading text: " + $("h2").text()));
+
+  // live filter
+  $("#search").on("keyup", function(){
+    const q = $(this).val().toLowerCase();
+    $("#tbl tr:gt(0)").filter(function(){ $(this).toggle($(this).text().toLowerCase().indexOf(q) > -1); });
+  });
+
+  // AJAX
+  $("#load").click(function(){
+    $.getJSON("../Exp9/data.json", function(d){
+      let h = "<ul>"; $.each(d.students, (i, s) => h += `<li>${s.name} - ${s.course} (${s.marks})</li>`);
+      $("#ajaxOut").html(h + "</ul>");
+    }).fail(() => $("#ajaxOut").text("Could not load. Run through a local server."));
+  });
+  $("#loadPublic").click(function(){
+    $.ajax({ url:"https://jsonplaceholder.typicode.com/users?_limit=3", method:"GET", dataType:"json",
+      success: users => $("#ajaxOut").html("<ul>" + users.map(u => `<li>${u.name} - ${u.email}</li>`).join("") + "</ul>"),
+      error: () => $("#ajaxOut").text("Request failed")
+    });
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Experiment 10 - jQuery Program 1</title>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<style>
+body{font-family:Arial;margin:20px;background:#f4f1fa}
+.box{background:#fff;border:2px solid #8e44ad;padding:15px;margin:10px 0;border-radius:8px}
+button{background:#8e44ad;color:#fff;border:none;padding:8px 14px;border-radius:5px;cursor:pointer;margin:3px}
+.highlight{background:yellow}
+#animBox{width:100px;height:60px;background:#8e44ad;position:relative}
+</style></head>
+<body>
+<h2>jQuery Program 1: Selectors, Effects, Animation</h2>
+
+<div class="box">
+  <h3>Selectors and CSS</h3>
+  <p class="para">Paragraph one</p>
+  <p class="para" id="second">Paragraph two</p>
+  <button id="hl">Highlight all</button>
+  <button id="cssBtn">Change CSS of #second</button>
+</div>
+
+<div class="box">
+  <h3>Hide / Show / Toggle / Fade / Slide</h3>
+  <button id="hide">Hide</button> <button id="show">Show</button> <button id="toggle">Toggle</button>
+  <button id="fadeBtn">Fade Toggle</button> <button id="slideBtn">Slide Toggle</button>
+  <p id="effectPara">This paragraph is used for effects.</p>
+</div>
+
+<div class="box">
+  <h3>animate()</h3>
+  <button id="animBtn">Animate</button>
+  <div id="animBox"></div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#hl").click(function(){ $(".para").toggleClass("highlight"); });
+  $("#cssBtn").click(function(){ $("#second").css({"color":"crimson","font-size":"22px"}); });
+
+  $("#hide").click(()   => $("#effectPara").hide(500));
+  $("#show").click(()   => $("#effectPara").show(500));
+  $("#toggle").click(() => $("#effectPara").toggle(500));
+  $("#fadeBtn").click(()  => $("#effectPara").fadeToggle(600));
+  $("#slideBtn").click(() => $("#effectPara").slideToggle(600));
+
+  $("#animBtn").click(function(){
+    $("#animBox").animate({left:"250px", height:"120px", width:"150px"}, 800)
+                 .animate({left:"0px", height:"60px", width:"100px"}, 800);
+  });
+});
+</script>
+</body>
+</html>
