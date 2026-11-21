@@ -1,4 +1,4 @@
-# 🖥️ BACKEND DEVELOPMENT
+# BACKEND DEVELOPMENT
 
 ### Course Repository: Assignments, Lab Experiments, Viva & Theory
 
@@ -10,7 +10,7 @@
 ---
 ---
 
-## 👤 Student Details
+## Student Details
 
 | Field | Details |
 |:------|:--------|
@@ -20,7 +20,7 @@
 
 ---
 
-## 📑 Table of Contents
+## Table of Contents
 
 1. [Assignments](#-assignments)
 2. [Lab Experiments](#-lab-experiments)
@@ -30,7 +30,7 @@
 
 ---
 
-## 📝 Assignments
+## Assignments
 
 | # | Title | Report |
 |:-:|:------|:------:|
@@ -38,7 +38,7 @@
 
 ---
 
-## 🧪 Lab Experiments
+##  Lab Experiments
 
 | Exp No. | Report |
 |:-------:|:------:|
@@ -60,7 +60,7 @@
 
 ---
 
-## 🎤 Viva
+##  Viva
 
 | Section | Report |
 |:--------|:------:|
@@ -68,16 +68,16 @@
 
 ---
 
-## 📚 Theory
+##  Theory
 
 | Topic | Report |
 |:------|:------:|
-| ⚡ **FastAPI** | [📄 View Report](./Theory/Fast_api/Report.md) |
-| 🌶️ **Flask Server** | [📄 View Report](./Theory/Flask_server/Report.md) |
+| **FastAPI** | [📄 View Report](./Theory/Fast_api/Report.md) |
+| **Flask Server** | [📄 View Report](./Theory/Flask_server/Report.md) |
 
 ---
 
-## 🗂️ Repository Structure
+##  Repository Structure
 
 ```text
 BACKEND/
