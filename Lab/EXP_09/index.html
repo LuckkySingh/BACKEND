@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Experiment 9 - AJAX with HTML, XML and JSON</title>
+<style>
+body{font-family:Arial;margin:20px;background:#f4f1fa}
+button{background:#8e44ad;color:#fff;border:none;padding:8px 14px;border-radius:5px;cursor:pointer;margin:3px}
+#result{background:#fff;border:2px solid #8e44ad;padding:15px;margin-top:15px;border-radius:8px}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid #8e44ad;padding:6px}
+</style></head>
+<body>
+<h2>AJAX with HTML, XML and JSON data</h2>
+<p><b>Note:</b> run this page through a local server (e.g. <code>npx http-server</code> or VS Code Live Server). AJAX will not work with file://</p>
+<button onclick="loadHTML()">Load HTML (XMLHttpRequest)</button>
+<button onclick="loadXML()">Load XML (XMLHttpRequest)</button>
+<button onclick="loadJSON()">Load JSON (XMLHttpRequest)</button>
+<button onclick="loadJSONFetch()">Load JSON (fetch API)</button>
+<div id="result">Result will appear here...</div>
+
+<script>
+const out = document.getElementById("result");
+
+function tableFrom(rows){
+  let h = "<table><tr><th>ID</th><th>Name</th><th>Course</th><th>Marks</th></tr>";
+  rows.forEach(r => h += `<tr><td>${r.id}</td><td>${r.name}</td><td>${r.course}</td><td>${r.marks}</td></tr>`);
+  return h + "</table>";
+}
+
+// 1. AJAX with HTML
+function loadHTML(){
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState === 4) {
+      out.innerHTML = xhr.status === 200 ? xhr.responseText : "Error: " + xhr.status;
+    }
+  };
+  xhr.open("GET", "info.html", true);
+  xhr.send();
+}
+
+// 2. AJAX with XML
+function loadXML(){
+  const xhr = new XMLHttpRequest();
+  xhr.onload = function(){
+    if (xhr.status !== 200) { out.textContent = "Error: " + xhr.status; return; }
+    const xml = xhr.responseXML;
+    const items = xml.getElementsByTagName("student");
+    const rows = [];
+    for (let s of items){
+      rows.push({
+        id: s.getElementsByTagName("id")[0].textContent,
+        name: s.getElementsByTagName("name")[0].textContent,
+        course: s.getElementsByTagName("course")[0].textContent,
+        marks: s.getElementsByTagName("marks")[0].textContent
+      });
+    }
+    out.innerHTML = "<h3>Data from XML</h3>" + tableFrom(rows);
+  };
+  xhr.onerror = () => out.textContent = "Network error";
+  xhr.open("GET", "data.xml");
+  xhr.send();
+}
+
+// 3. AJAX with JSON
+function loadJSON(){
+  const xhr = new XMLHttpRequest();
+  xhr.onload = function(){
+    if (xhr.status !== 200) { out.textContent = "Error: " + xhr.status; return; }
+    const data = JSON.parse(xhr.responseText);
+    out.innerHTML = "<h3>Data from JSON</h3>" + tableFrom(data.students);
+  };
+  xhr.open("GET", "data.json");
+  xhr.send();
+}
+
+// 4. AJAX using fetch (modern)
+async function loadJSONFetch(){
+  try {
+    const res = await fetch("data.json");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    out.innerHTML = "<h3>Data from JSON (fetch API)</h3>" + tableFrom(data.students);
+  } catch (err) { out.textContent = "Error: " + err.message; }
+}
+</script>
+</body>
+</html>

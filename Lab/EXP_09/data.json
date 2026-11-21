@@ -1,0 +1,7 @@
+{
+  "students": [
+    { "id": 1, "name": "Asha",  "course": "BCA",  "marks": 88 },
+    { "id": 2, "name": "Ravi",  "course": "BSc",  "marks": 76 },
+    { "id": 3, "name": "Meera", "course": "BTech","marks": 91 }
+  ]
+}

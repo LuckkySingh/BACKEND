@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<students>
+  <student><id>1</id><name>Asha</name><course>BCA</course><marks>88</marks></student>
+  <student><id>2</id><name>Ravi</name><course>BSc</course><marks>76</marks></student>
+  <student><id>3</id><name>Meera</name><course>BTech</course><marks>91</marks></student>
+</students>
