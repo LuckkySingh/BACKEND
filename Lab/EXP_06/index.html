@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Experiment 6 - Form Validation</title>
+<style>
+body{font-family:Arial;background:#f4f1fa;display:flex;justify-content:center;padding:20px}
+form{background:#fff;padding:25px;border-radius:10px;width:360px;box-shadow:0 0 10px #bbb}
+label{display:block;margin-top:12px;font-weight:bold}
+input,select{width:100%;padding:8px;margin-top:4px;box-sizing:border-box}
+.error{color:crimson;font-size:13px;min-height:16px}
+button{margin-top:15px;padding:10px;width:100%;background:#8e44ad;color:#fff;border:none;border-radius:5px;cursor:pointer}
+#success{color:green;text-align:center;margin-top:10px;font-weight:bold}
+</style></head>
+<body>
+<form id="regForm" novalidate>
+  <h2>Registration Form</h2>
+  <label>Name</label><input type="text" id="name"><div class="error" id="nameErr"></div>
+  <label>Email</label><input type="text" id="email"><div class="error" id="emailErr"></div>
+  <label>Phone</label><input type="text" id="phone"><div class="error" id="phoneErr"></div>
+  <label>Password</label><input type="password" id="pass"><div class="error" id="passErr"></div>
+  <label>Confirm Password</label><input type="password" id="cpass"><div class="error" id="cpassErr"></div>
+  <label>Age</label><input type="number" id="age"><div class="error" id="ageErr"></div>
+  <label>Gender</label>
+  <select id="gender"><option value="">--Select--</option><option>Male</option><option>Female</option><option>Other</option></select>
+  <div class="error" id="genderErr"></div>
+  <label><input type="checkbox" id="terms" style="width:auto"> I accept the terms</label><div class="error" id="termsErr"></div>
+  <button type="submit">Submit</button>
+  <div id="success"></div>
+</form>
+<script>
+const $ = id => document.getElementById(id);
+function setErr(id, msg){ $(id+"Err").textContent = msg; return msg === ""; }
+
+function validate(){
+  const name=$("name").value.trim(), email=$("email").value.trim(), phone=$("phone").value.trim(),
+        pass=$("pass").value, cpass=$("cpass").value, age=Number($("age").value);
+  let ok = true;
+  ok = setErr("name",  /^[A-Za-z ]{3,}$/.test(name) ? "" : "Name must have 3+ letters only") && ok;
+  ok = setErr("email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "" : "Enter a valid email") && ok;
+  ok = setErr("phone", /^[6-9]\d{9}$/.test(phone) ? "" : "Enter a valid 10-digit phone number") && ok;
+  ok = setErr("pass",  /^(?=.*[A-Za-z])(?=.*\d).{8,}$/.test(pass) ? "" : "Min 8 chars with letters and digits") && ok;
+  ok = setErr("cpass", pass === cpass && cpass !== "" ? "" : "Passwords do not match") && ok;
+  ok = setErr("age",   age >= 18 && age <= 100 ? "" : "Age must be between 18 and 100") && ok;
+  ok = setErr("gender",$("gender").value ? "" : "Please select gender") && ok;
+  ok = setErr("terms", $("terms").checked ? "" : "You must accept the terms") && ok;
+  return ok;
+}
+
+$("regForm").addEventListener("submit", e => {
+  e.preventDefault();
+  $("success").textContent = validate() ? "Form submitted successfully!" : "";
+});
+// live validation on typing
+document.querySelectorAll("input,select").forEach(el => el.addEventListener("blur", validate));
+</script>
+</body>
+</html>
