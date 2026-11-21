@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experiment 13 - Student Manager (MongoDB + Node)</title>
+<style>
+body{font-family:Arial;margin:20px;background:#f4f1fa}
+form,table{background:#fff;padding:15px;border-radius:8px;margin-bottom:15px}
+input{padding:7px;margin:3px}
+button{background:#8e44ad;color:#fff;border:none;padding:7px 12px;border-radius:5px;cursor:pointer}
+table{border-collapse:collapse;width:100%}th,td{border:1px solid #8e44ad;padding:7px}
+</style></head>
+<body>
+<h2>Student Manager (Node.js + MongoDB)</h2>
+<form id="f">
+  <input id="name" placeholder="Name" required>
+  <input id="course" placeholder="Course" required>
+  <input id="marks" type="number" placeholder="Marks" required>
+  <button type="submit" id="saveBtn">Add Student</button>
+  <button type="button" id="cancel" style="display:none">Cancel</button>
+</form>
+<table><thead><tr><th>Name</th><th>Course</th><th>Marks</th><th>Actions</th></tr></thead><tbody id="rows"></tbody></table>
+<script>
+let editId = null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+async function load(){
+  const list = await (await fetch("/api/students")).json();
+  $("rows").innerHTML = list.map(s => `<tr><td>${esc(s.name)}</td><td>${esc(s.course)}</td><td>${s.marks}</td>
+    <td><button onclick='edit(${JSON.stringify(s).replace(/'/g,"&#39;")})'>Edit</button>
+        <button onclick="del('${s._id}')">Delete</button></td></tr>`).join("");
+}
+function edit(s){ editId = s._id; $("name").value=s.name; $("course").value=s.course; $("marks").value=s.marks;
+  $("saveBtn").textContent="Update"; $("cancel").style.display="inline"; }
+function reset(){ editId=null; $("f").reset(); $("saveBtn").textContent="Add Student"; $("cancel").style.display="none"; }
+async function del(id){ if(confirm("Delete this student?")){ await fetch("/api/students/"+id,{method:"DELETE"}); load(); } }
+$("cancel").onclick = reset;
+$("f").onsubmit = async e => {
+  e.preventDefault();
+  const body = JSON.stringify({ name:$("name").value, course:$("course").value, marks:$("marks").value });
+  await fetch(editId ? "/api/students/"+editId : "/api/students", { method: editId ? "PUT":"POST", headers:{"Content-Type":"application/json"}, body });
+  reset(); load();
+};
+load();
+</script>
+</body>
+</html>

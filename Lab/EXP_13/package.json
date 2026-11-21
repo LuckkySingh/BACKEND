@@ -1,0 +1,12 @@
+{
+  "name": "exp13-mongodb-node",
+  "version": "1.0.0",
+  "description": "Experiment 13 - Programs using MongoDB with Node JS",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "crud": "node crud-demo.js" },
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0"
+  },
+  "license": "ISC"
+}
