@@ -84,9 +84,21 @@ BACKEND/
 ├── Assignment_1/
 │   └── Report.md
 ├── Lab/
-│   ├── EXP_01/ … EXP_13/
+│   ├── EXP_01/
+│   ├── EXP_02/
+│   ├── EXP_03/
+│   ├── EXP_04/
+│   ├── EXP_05/
+│   ├── EXP_06/
+│   ├── EXP_07/
+│   ├── EXP_08/
+│   ├── EXP_09/
+│   ├── EXP_10/
+│   ├── EXP_11/
+│   ├── EXP_12/
 │   ├── EXP_12_B/
 │   │   └── exp_1/
+│   ├── EXP_13/
 │   └── EXP_15/
 │       └── DjangoTodo/
 ├── Viva/
