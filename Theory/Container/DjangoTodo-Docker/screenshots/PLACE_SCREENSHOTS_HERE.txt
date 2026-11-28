@@ -1,0 +1,1 @@
+Capture the seven required screenshots on your own Docker environment. See README.md.
